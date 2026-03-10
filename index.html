@@ -94,8 +94,8 @@ Eightronix<span class="text-cyan-400">Media</span>
 
     <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 px-6 reveal">
         <div class="text-center max-w-4xl mx-auto z-10">
-            <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
-                Turning <span class="text-gradient">Attention</span> <br /> Into <span class="text-gradient">Revenue.</span>
+            <h1 data-aos="fade-up" class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+                Turning <span class="text-gradient">Attention</span> <br /> Into <span id="typing" class="text-gradient"></span>
             </h1>
             <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
                 We help brands grow with smart marketing, creative design, and powerful digital strategies.
@@ -450,6 +450,42 @@ VANTA.NET({
   touchControls: true,
   backgroundColor: 0x0f0f13
 });
+</script>
+    <script>
+const words=["Revenue.","Growth.","Results."];
+let i=0;
+let j=0;
+let currentWord="";
+let isDeleting=false;
+
+function type(){
+
+currentWord=words[i];
+
+if(isDeleting){
+document.getElementById("typing").textContent=currentWord.substring(0,j-1);
+j--;
+}else{
+document.getElementById("typing").textContent=currentWord.substring(0,j+1);
+j++;
+}
+
+if(!isDeleting && j===currentWord.length){
+isDeleting=true;
+setTimeout(type,1200);
+return;
+}
+
+if(isDeleting && j===0){
+isDeleting=false;
+i++;
+if(i===words.length){i=0;}
+}
+
+setTimeout(type,isDeleting?60:120);
+}
+
+type();
 </script>
 
 </body>
